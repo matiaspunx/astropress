@@ -1,0 +1,29 @@
+---
+export interface Props {
+  title: string
+  description?: string
+  image?: string
+  creator?: string
+  user?: string
+  site?: string
+}
+
+const { title, description, image, creator, user, site } = Astro.props
+---
+
+<meta name="description" content={description || "Astropress es un blog de astropress, basado en Astro y tailwindcss."} />
+
+<meta name="twitter:site" content={user} />
+<meta name="twitter:creator" content={user} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description || "Astropress es un blog de astropress, basado en Astro y tailwindcss."} />
+<meta name="twitter:image" content={image} />
+
+<meta property="og:url" content={site} />
+<meta property="og:locale" content="es_AR" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={creator} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description || "Astropress es un blog de astropress, basado en Astro y tailwindcss."} />
+<meta property="og:image" content={image} />
