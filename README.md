@@ -19,6 +19,10 @@ npm install
 WORDPRESS_API_URL = ""
 ```
 
+En este proyecto usamos WPGraphQL para interactuar con la API de WordPress. La url de la API seria algo asi: `https://example.com/graphql`.
+
+Pueden instalarlo desde aca: https://wordpress.org/plugins/wp-graphql/
+
 ## ejecutar
 
 ```sh
