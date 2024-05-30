@@ -1,11 +1,13 @@
 ---
+import HeroHome from "@/components/HeroHome.astro"
+import HomeList from "@/components/HomeList.astro"
 import Layout from "../layouts/Layout.astro"
 ---
 
-<Layout title="Welcome to Astro." description="Astropress es un punto de partida para crear sitios web con Astro y WordPress.">
+<Layout title="Astropress" description="Astropress es un punto de partida para crear sitios web con Astro y WordPress.">
   <main class="flex flex-col items-center justify-center max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h1><span class="text-gradient">AstroPress</span></h1>
-    <p class="text-white text-base">Astropress es un punto de partida para crear sitios web con Astro y WordPress.</p>
+    <HeroHome />
+    <HomeList />
   </main>
 </Layout>
 

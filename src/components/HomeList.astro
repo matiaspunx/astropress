@@ -1,0 +1,41 @@
+---
+import HomeCard from "./HomeCard.astro"
+import { wpAPI } from "@/lib/api"
+
+const data = await wpAPI({
+  query: `query {
+    posts(where: {categoryName: "productos"}, first: 6) {
+      nodes {
+        title
+        uri
+        id
+        featuredImage {
+          node {
+            mediaItemUrl
+            sourceUrl(size: LARGE)
+            srcSet(size: LARGE)
+          }
+        }
+      }
+    }
+  }`
+})
+
+const posts = data.posts.nodes
+---
+
+<!-- Card Blog -->
+<div class="px-4 py-10 mt-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+  <!-- Title -->
+  <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
+    <h2 class="text-2xl font-bold md:text-4xl md:leading-tight dark:text-white">Ultimos posts</h2>
+  </div>
+  <!-- End Title -->
+
+  <!-- Grid -->
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {posts.map((post: any) => <HomeCard title={post.title} uri={post.uri} image={post.featuredImage.node.mediaItemUrl} num={post.id} />)}
+  </div>
+  <!-- End Grid -->
+</div>
+<!-- End Card Blog -->

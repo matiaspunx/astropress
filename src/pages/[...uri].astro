@@ -2,6 +2,10 @@
 export const prerender = true
 
 import Layout from "../layouts/Layout.astro"
+import Post from "@/components/templates/Post.astro"
+import Page from "@/components/templates/Page.astro"
+import Archive from "@/components/templates/Archive.astro"
+
 import { wpAPI } from "@/lib/api"
 
 const { uri } = Astro.params
@@ -12,11 +16,22 @@ const url: string = `/${uri}/`
 const data = await wpAPI({
   query: `query {
     nodeByUri(uri: "${url}") {
+      __typename
+      isContentNode
+      isTermNode
     ... on Post {
       id
       content(format: RENDERED)
       title(format: RENDERED)
       uri
+      date
+      categories {
+        nodes {
+          id
+          slug
+          name
+        }
+      }
       featuredImage {
         node {
           mediaItemUrl
@@ -78,15 +93,31 @@ export async function getStaticPaths() {
   })
 }
 
-console.log(node)
+function resolveContentTemplate(node: { __typename: any }) {
+  let template
+  switch (node.__typename) {
+    case "Post":
+      template = Post
+      break
+    case "Page":
+      template = Page
+      break
+    case "Category":
+      template = Archive
+      break
+    case "Tag":
+      template = Archive
+      break
+    default:
+      template = Post
+  }
+
+  return template
+}
+
+const Template = resolveContentTemplate(node)
 ---
 
-<Layout title="Astropress" description="Astropress es un punto de partida para crear sitios web con Astro y WordPress.">
-  <div>
-    <div>
-      <img src={node.featuredImage.node.mediaItemUrl} alt={node.title} />
-    </div>
-    <h1>{node.title}</h1>
-    <Fragment set:html={node.content} />
-  </div>
+<Layout title={node.title} description="Astropress es un punto de partida para crear sitios web con Astro y WordPress.">
+  <Template node={node} />
 </Layout>

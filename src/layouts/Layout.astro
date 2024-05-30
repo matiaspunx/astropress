@@ -18,13 +18,17 @@ const { title, description, image } = Astro.props
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <Seo title={title} description={description} image={image || "/og.png"} />
-    <title>{title}</title>
-    <ViewTransitions />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  </head>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2210 0 100 100%22><text y=%22.90em%22 font-size=%2290%22>🚀</text></svg>"
+    /><meta name="generator" content={Astro.generator} /></head
+  >
+
+  <Seo title={title} description={description} image={image || "/og.png"} />
+  <title>{title}</title>
+  <ViewTransitions />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
   <body>
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <Header />
@@ -47,6 +51,8 @@ const { title, description, image } = Astro.props
         background-size: 224px;
       }
     </style>
-    <script is:inline src="/node_modules/preline/dist/preline.js"></script>
+    <script is:inline data-astro-rerun src="/node_modules/preline/dist/preline.js"></script>
   </body>
+
+
 </html>
