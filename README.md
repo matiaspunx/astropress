@@ -5,7 +5,7 @@ Astropress es un punto de partida para crear sitios web con Astro y WordPress.
 ## 🚀 Instalación
 
 ```sh
-git clone https://github.com/astropress/astropress.git
+git clone https://github.com/matiaspunx/astropress.git
 cd astropress
 ```
 
