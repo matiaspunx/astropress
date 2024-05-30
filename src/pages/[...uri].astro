@@ -1,0 +1,92 @@
+---
+export const prerender = true
+
+import Layout from "../layouts/Layout.astro"
+import { wpAPI } from "@/lib/api"
+
+const { uri } = Astro.params
+
+const url: string = `/${uri}/`
+
+// obtenemos el post de la url
+const data = await wpAPI({
+  query: `query {
+    nodeByUri(uri: "${url}") {
+    ... on Post {
+      id
+      content(format: RENDERED)
+      title(format: RENDERED)
+      uri
+      featuredImage {
+        node {
+          mediaItemUrl
+          sourceUrl(size: LARGE)
+          srcSet(size: LARGE)
+        }
+      }
+    }
+    ... on Page {
+      id
+      content(format: RENDERED)
+      title(format: RENDERED)
+      uri
+      featuredImage {
+        node {
+          mediaItemUrl
+          sourceUrl(size: LARGE)
+          srcSet(size: LARGE)
+        }
+      }
+    }
+    ... on Category {
+      id
+    }
+    isContentNode
+    isTermNode
+    uri
+  }
+  }`,
+  variables: {
+    uri: url
+  }
+})
+
+const node = data.nodeByUri
+if (!node.excerpt) node.excerpt = ""
+let excerpt = node.excerpt.replace(/<[^>]*>?/gm, "")
+
+export async function getStaticPaths() {
+  return await wpAPI({
+    query: `query GetAllUris {
+            terms {
+              nodes {
+                uri
+              }
+            }
+            posts(first: 100) {
+              nodes {
+                uri
+              }
+            }
+            pages(first: 100) {
+              nodes {
+                uri
+              }
+            }
+          }`,
+    strategy: "uris"
+  })
+}
+
+console.log(node)
+---
+
+<Layout title="Astropress" description="Astropress es un punto de partida para crear sitios web con Astro y WordPress.">
+  <div>
+    <div>
+      <img src={node.featuredImage.node.mediaItemUrl} alt={node.title} />
+    </div>
+    <h1>{node.title}</h1>
+    <Fragment set:html={node.content} />
+  </div>
+</Layout>

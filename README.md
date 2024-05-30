@@ -29,6 +29,8 @@ Pueden instalarlo desde aca: https://wordpress.org/plugins/wp-graphql/
 npm run dev
 ```
 
+La integración con Tailwind ya viene incluida en el proyecto, por lo que podés usar cualquier componente de tailwind.
+
 ## 🚀 Estructura del proyecto
 
 Dentro de tu proyecto Astro, verás los siguientes directorios y archivos:
