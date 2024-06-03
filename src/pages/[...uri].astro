@@ -30,6 +30,7 @@ const data = await wpAPI({
           id
           slug
           name
+          uri
         }
       }
       featuredImage {
@@ -55,6 +56,18 @@ const data = await wpAPI({
     }
     ... on Category {
       id
+      name
+      posts {
+        nodes {
+          featuredImage {
+            node {
+              mediaItemUrl
+            }
+          }
+          uri
+          title(format: RENDERED)
+        }
+      }
     }
     isContentNode
     isTermNode
@@ -68,7 +81,6 @@ const data = await wpAPI({
 
 const node = data.nodeByUri
 if (!node.excerpt) node.excerpt = ""
-let excerpt = node.excerpt.replace(/<[^>]*>?/gm, "")
 
 export async function getStaticPaths() {
   return await wpAPI({

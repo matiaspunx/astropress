@@ -1,0 +1,54 @@
+---
+import LayoutAbeceb from "@/layouts/LayoutAbeceb.astro"
+import AbecebTpl from "@/components/templates/AbecebTpl.astro"
+import { wpAPI } from "@/lib/api"
+
+const data = await wpAPI({
+  query: `query {
+    nodeByUri(uri: "/landing/abeceb/") {
+      __typename
+      isContentNode
+      isTermNode
+    ... on Landing {
+      id
+      content(format: RENDERED)
+      title(format: RENDERED)
+      uri
+      date
+      elementoslanding {
+        hero {
+          imagen {
+            node {
+              mediaItemUrl
+            }
+          }
+          titulo
+          logo {
+            node {
+              mediaItemUrl
+            }
+          }
+          texto
+        }
+      }
+      featuredImage {
+        node {
+          mediaItemUrl
+          sourceUrl(size: LARGE)
+          srcSet(size: LARGE)
+          }
+        }
+      }
+    }
+  }`,
+  variables: {
+    uri: "/abeceb"
+  }
+})
+
+const node = data.nodeByUri
+---
+
+<LayoutAbeceb title="Abeceb" description="Abeceb es un punto de partida para crear sitios web con Astro y WordPress.">
+  <AbecebTpl node={node} />
+</LayoutAbeceb>

@@ -4,9 +4,9 @@ interface IWPAPI {
   strategy?: string;
 }
 
-// funcion que se encarga de conectar con el wordpress y devolver los datos
+// función que se encarga de conectar con el WordPress y devolver los datos
 /*
-la variable query es el query que se va a ejecutar en el wordpress, y variables es un objeto, opcional, con los variables que se van a pasar a la query.
+la variable query es el query que se va a ejecutar en el WordPress, y variables es un objeto, opcional, con los variables que se van a pasar a la query.
 */
 
 /*
@@ -39,10 +39,10 @@ export async function wpAPI ({ query, variables = {}, strategy = "query" }: IWPA
     return data
   }
 
-  if (strategy === "uris") {
+  if (strategy === "uris" && typeof data === "object") {
     const uris = Object.values(data)
-      .reduce(function (acc, currentValue) {
-        return acc.concat(currentValue.nodes)
+      .reduce(function (acc: any[], currentValue: unknown) {
+        return acc.concat((currentValue as any).nodes)
       }, [])
       .filter((node) => node.uri !== null)
       .map((node) => {

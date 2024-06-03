@@ -1,0 +1,296 @@
+---
+import { ViewTransitions } from "astro:transitions"
+import "@/base.css"
+
+import Seo from "@/components/Seo.astro"
+
+interface Props {
+  title: string
+  description?: string
+  image?: string
+}
+
+const { title, description, image } = Astro.props
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%2210 0 100 100%22><text y=%22.90em%22 font-size=%2290%22>🚀</text></svg>"
+    /><meta name="generator" content={Astro.generator} /></head
+  >
+
+  <Seo title={title} description={description} image={image || "/og.png"} creator="Astropress" user="astropress" site="https://astropress.com" />
+  <title>{title}</title>
+  <ViewTransitions />
+  <link rel="stylesheet" href="/css/styles.css?v=2405091" />
+  <link rel="stylesheet" type="text/css" href="/slick/slick.css" />
+  <link rel="stylesheet" type="text/css" href="/slick/slick-theme.css" />
+
+  <body>
+    <slot />
+    <script is:inline src="/js/jquery-1.11.0.min.js"></script>
+    <script is:inline src="/slick/slick.min.js"></script>
+    <!-- import lenis.min antes que main -->
+    <script is:inline src="/js/lenis.min.js"></script>
+    <script is:inline src="/js/main.js"></script>
+
+    <!-- gsap -->
+    <script is:inline src="/js/gsap/splitting.min.js"></script>
+    <script>
+      import { gsap } from "gsap"
+      import ScrollTrigger from "gsap/ScrollTrigger"
+      import Splitting from "splitting"
+
+      document.addEventListener("DOMContentLoaded", function () {
+        "use strict"
+
+        Splitting()
+        gsap.registerPlugin(ScrollTrigger)
+
+        // set element nav and Hero
+        gsap.set("#brand-logo-sticky", {
+          opacity: 0
+        })
+
+        function sectionTwo() {
+          gsap.from(".partners", {
+            opacity: 0,
+            y: 50,
+            scrollTrigger: {
+              trigger: "#two",
+              start: "top+=150 center",
+              toggleActions: "play none none reverse"
+              //  markers: true
+            }
+          })
+        }
+        // sectionTwo();
+
+        function sectionThree() {
+          const tlSectionThree = gsap.timeline({
+            scrollTrigger: {
+              trigger: "#three",
+              start: "top+=150 center",
+              toggleActions: "play none none reverse"
+            }
+          })
+          tlSectionThree.from(".anm_cta_title", {
+            y: 30,
+            opacity: 0
+          })
+          tlSectionThree.from(
+            ".anm_cta_btn",
+            {
+              y: 50,
+              opacity: 0,
+              delay: 1
+            },
+            "<"
+          )
+          tlSectionThree.to(
+            ".anm_cta_title",
+            {
+              y: -20
+            },
+            "<"
+          )
+        }
+        sectionThree()
+
+        function parallaxThree() {
+          gsap.to(".image_three", {
+            yPercent: 20,
+            // backgroundPosition: `50% ${-innerHeight / 3}px`,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".image_three",
+              scrub: true
+            }
+          })
+
+          gsap.to(".parallax__layer_three", {
+            backgroundPosition: `50% ${-innerHeight / 3}px`,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".parallax__layer_three",
+              scrub: true
+            }
+          })
+        }
+        //   parallaxThree();
+
+        function sectionFour() {
+          gsap.from(".box", {
+            opacity: 0,
+            y: 50,
+            stagger: 0.5,
+            scrollTrigger: {
+              trigger: "#four",
+              start: "top+=150 center",
+              toggleActions: "play none none reverse"
+              //  markers: true
+            }
+          })
+        }
+        // sectionFour();
+
+        function sectionFive() {
+          const tlSectionFive = gsap.timeline({
+            scrollTrigger: {
+              trigger: "#five",
+              start: "top+=150 center",
+              toggleActions: "play none none reverse"
+              //  markers: true,
+              // scrub: 2
+            }
+          })
+          tlSectionFive.from(".five_item_animation", {
+            opacity: 0,
+            y: 50,
+            stagger: 0.5
+          })
+          tlSectionFive.from(
+            ".img-insights-desk",
+            {
+              opacity: 0,
+              x: 100,
+              scrollTrigger: {
+                trigger: "#five",
+                toggleActions: "play none none reverse",
+                scrub: true
+              }
+            },
+            "<"
+          )
+        }
+        // sectionFive();
+
+        function sectionSix() {
+          gsap.from(".six_animation", {
+            opacity: 0,
+            y: 50,
+            stagger: 0.5,
+            scrollTrigger: {
+              trigger: "#six",
+              start: "top+=150 center",
+              toggleActions: "play none none reverse"
+              //  markers: true
+            }
+          })
+        }
+        // sectionSix();
+
+        function sectionForm() {
+          gsap.from(".form_animation", {
+            opacity: 0,
+            y: 50,
+            stagger: 0.5,
+            scrollTrigger: {
+              trigger: "#form",
+              start: "top+=150 center",
+              toggleActions: "play none none reverse"
+              //  markers: true
+            }
+          })
+        }
+        // sectionForm();
+
+        function sectionFooter() {
+          gsap.from(".footer-column", {
+            opacity: 0,
+            y: 50,
+            stagger: 0.2,
+            scrollTrigger: {
+              trigger: "#footer",
+              start: "top-=100 center",
+              toggleActions: "play none none reverse"
+              //  markers: true
+            }
+          })
+        }
+        // sectionFooter();
+
+        // set time line Nav bar
+        const tlHomeHero = gsap.timeline({
+          scrollTrigger: {
+            start: "top+=250 top+=150",
+            end: "+=1",
+            toggleActions: "play none none reverse"
+          }
+        })
+
+        let mm = gsap.matchMedia()
+
+        mm.add("(min-width: 800px)", () => {
+          // desktop setup code here...
+          tlHomeHero
+            .to("#anm_brand_home", {
+              opacity: 0,
+              scale: 0.5
+            })
+            .to("#brand-logo-sticky", {
+              opacity: 1
+            })
+            .to("#nav-container", {
+              backgroundColor: " rgb(62, 117, 120, .4)"
+            })
+
+            .to(".image_hero", {
+              yPercent: -40,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".image_hero",
+                scrub: true
+              }
+            })
+        })
+
+        mm.add("(max-width: 799px)", () => {
+          // mobile setup code here...
+          gsap.set(".anm_heading_title_2", {
+            opacity: 1
+          })
+
+          gsap.set(".image_three", {
+            backgroundPositionX: `30%`
+          })
+
+          gsap.to(".anm_heading_title_1 ", {
+            delay: 0.55,
+            opacity: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".anm_heading_title_1",
+              start: "top-=100 center",
+              end: "center center",
+              scrub: true
+            }
+          })
+
+          tlHomeHero
+            .to("#brand-logo-sticky", {
+              opacity: 1
+            })
+            .to(".anm_heading_title_1", {
+              opacity: 1
+            })
+            .to(".image_hero", {
+              yPercent: -10,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".image_hero",
+                scrub: true
+              }
+            })
+        })
+      })
+    </script>
+  </body>
+
+
+</html>

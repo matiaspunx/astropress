@@ -1,0 +1,356 @@
+---
+interface Props {
+  node: any
+}
+
+const { node } = Astro.props
+---
+
+<div class="nav-container" id="nav-container">
+  <nav class="nav-menu hide" id="menu">
+    <ul>
+      <li><a href="/" class="item-inicio">Inicio</a></li>
+      <li><a href="#">Nosotros</a></li>
+      <li><a href="#">Servicios</a></li>
+      <li><a class="btn" href="#form" onclick="lenis.scrollTo('#form')">¿Hablamos?</a></li>
+    </ul>
+  </nav>
+  <a href="/" class="nav-logo-box" id="brand-logo-sticky">
+    <div class="nav-logo-box__desk">
+      <img src="/img/abeceb-logo-main.svg" alt="logo menu" class="nav-logo-box__desk--logo" />
+    </div>
+    <div class="nav-logo-box__mob">
+      <img src="/img/abeceb-logo-mob.png" alt="logo menu" />
+    </div>
+  </a>
+  <div class="nav-burger-toggle" id="burger-toggle">
+    <img src="/img/icons/hamburger.svg" alt="abrir menu" class="nav-burger-toggle__burger" />
+    <img src="/img/icons/close-nav.svg" alt="cerrar menu" class="nav-burger-toggle__close" />
+  </div>
+</div>
+
+<main>
+  <div id="one" class="fullwidth-section section1 parallax__layer_hero" data-type="background" data-speed="2">
+    <div class="fullwidth-container parallax__content_hero">
+      <div class="one-hero-wrapper">
+        <div class="logo" id="anm_brand_home"><img src={node.elementoslanding.hero.logo.node.mediaItemUrl} alt={node.elementoslanding.hero.titulo} /></div>
+      </div>
+      <div class="one-hero-wrapper-1">
+        <Fragment set:html={node.elementoslanding.hero.texto} />
+      </div>
+      <div class="parallax__image_hero">
+        <div
+          class="image_hero"
+          style=`background-blend-mode:multiply; background: linear-gradient(#568386, #568386), url(${node.elementoslanding.hero.imagen.node.mediaItemUrl}); background-position: top center; background-repeat: no-repeat; background-size: cover;`
+        >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="three" class="parallax__layer_three">
+    <div class="container parallax__content_three">
+      <h3 class="anm_cta_title">
+        Asumimos <br /> tus retos
+        <strong>como propios</strong>
+      </h3>
+      <a href="#form" onclick="lenis.scrollTo('#form')" class="btn element anm_cta_btn">Hablanos de tu proyecto</a>
+    </div>
+    <div class="parallax__image_three">
+      <div class="image_three" style="background: url(/img/foto_globos.jpg); background-size: cover; background-repeat: no-repeat;"></div>
+    </div>
+  </section>
+
+  <section id="four">
+    <div class="container">
+      <h3>Servicios</h3>
+      <div class="servicios-boxes">
+        <div class="box">
+          Predecimos <span>el entorno económico</span>
+          <hr />
+          <p>Conectamos la macro con la micro del negocio.</p>
+        </div>
+        <div class="box">
+          Conocemos <span>el know how y el know who</span>
+          <hr />
+          <p>
+            Somos el socio estratégico
+            <br />
+            del C-Level.
+          </p>
+        </div>
+        <div class="box">
+          Conectamos <span>oportunidades de negocio</span>
+          <hr />
+          <p>Junto al mejor expertise sectorial de la región.</p>
+        </div>
+      </div>
+      <a href="#">ver todos los servicios</a>
+    </div>
+  </section>
+
+  <section id="five">
+    <div class="container">
+      <h3>Insights</h3>
+      <div class="left five_item_animation">
+        <h4>
+          Nuestro conocimiento
+          <br />
+          <strong>a tu disposición</strong>
+        </h4>
+        <p>Somos una usina de pensamiento y conocimiento que capitalizamos a través de nuestra propuesta de valor.</p>
+        <a>muy pronto</a>
+      </div>
+      <div class="img-insights-desk">
+        <img src="/img/insights-img.png" alt="miscelanea" />
+      </div>
+      <div class="img-insights-mob">
+        <img src="/img/insights-img-mob.png" alt="miscelanea" />
+      </div>
+    </div>
+  </section>
+
+  <section id="six">
+    <h3>Plataforma <br /> de Negocios</h3>
+    <div class="slick-container six_animation">
+      <div class="slick-container__overlay">
+        <div class="modern-slider">
+          <!-- Item -->
+          <div class="item">
+            <div class="img-fill">
+              <div class="info">
+                <div>
+                  <h4>Foro</h4>
+                  <h5>
+                    El encuentro anual que reúne a las personalidades más relevantes del ámbito público y privado de Hispanoamérica en un exclusivo espacio de
+                    Networking.
+                  </h5>
+                  <!-- <a >muy pronto</a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- // Item -->
+          <!-- Item -->
+          <div class="item">
+            <div class="img-fill">
+              <div class="info">
+                <div>
+                  <h4>Colaboraciones</h4>
+                  <h5>Contribuimos a los ecosistemas de las instituciones más influyentes.</h5>
+                  <a>muy pronto</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- // Item -->
+          <!-- Item -->
+          <div class="item">
+            <div class="img-fill">
+              <div class="info">
+                <div>
+                  <h4>ABECEB en los medios</h4>
+                  <h5>Nuestro aporte a la economía y negocios.</h5>
+                  <!-- <a >muy pronto</a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- // Item -->
+          <!-- Item -->
+          <div class="item">
+            <div class="img-fill">
+              <div class="info">
+                <div>
+                  <h4>Networking</h4>
+                  <h5>Generamos contactos de valor para potenciar negocios y alianzas estratégicas.</h5>
+                  <!-- <a >muy pronto</a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- / Item -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="form">
+    <h3>¿Hablamos?</h3>
+    <form action="" class="form_animation">
+      <div class="group-1">
+        <span>
+          <label for="inputContact1">Soy</label>
+          <span class="form-field">
+            <input type="text" id="inputContact1" />
+            <span class="form-field__error-text"> Por favor, llená este campo </span>
+          </span>
+        </span>
+        <span>
+          <label for="inputContact2">y trabajo como</label>
+          <span class="form-field">
+            <select name="inputContact2" id="inputContact2">
+              <option value=""></option>
+              <option value="CEO">CEO</option>
+              <option value="Board Member">Board Member</option>
+              <option value="CFO">CFO</option>
+              <option value="Director">Director</option>
+              <option value="Manager">Manager</option>
+              <option value="Advisor">Advisor</option>
+              <option value="Otros">Otros</option>
+            </select>
+            <span class="form-field__error-text"> Por favor, llená este campo </span>
+          </span>
+        </span>
+        <span>
+          <label for="inputContact3">en la industria de</label>
+          <span class="form-field">
+            <select class="" id="inputContact3" name="inputContact3">
+              <option value=""></option>
+              <option value="Oil and Gas">Oil and Gas</option>
+              <option value="Movilidad">Movilidad</option>
+              <option value="Agro">Agro</option>
+              <option value="Conocimiento">Conocimiento</option>
+              <option value="Otros">Otros</option>
+            </select>
+            <span class="form-field__error-text"> Por favor, llená este campo </span>
+          </span>
+        </span>
+        <span>
+          <label for="inputContact4">Estoy buscando soluciones de</label>
+          <span class="form-field">
+            <select class="" id="inputContact4" name="inputContact4">
+              <option value=""></option>
+              <option value="Consultoría Económica">Consultoría Económica</option>
+              <option value="Consultoría Estratégica">Consultoría Estratégica</option>
+              <option value="Desarrollo de Negocios">Desarrollo de Negocios</option>
+            </select>
+            <span class="form-field__error-text"> Por favor, llená este campo </span>
+          </span>
+        </span>
+
+        <label for="inputContact5">para generar</label>
+        <div>
+          <span class="form-field">
+            <select id="inputContact5" name="inputContact5">
+              <option value=""></option>
+              <option value="Insights para la toma de decisiones">Insights para la toma de decisiones</option>
+              <option value="Nuevos negocios">Nuevos negocios</option>
+            </select>
+            <span class="form-field__error-text"> Por favor, llená este campo </span>
+          </span>
+          <label>en mi empresa. </label>
+        </div>
+      </div>
+      <span>
+        <label for="inputContact6">Mi correo electrónico es</label>
+        <span class="form-field">
+          <input type="text" name="inputContact6" id="inputContact6" />
+          <span class="form-field__error-text"> Por favor, llená este campo </span>
+        </span>
+      </span>
+      <span class="terminos form-field">
+        <input type="checkbox" value="1" name="terms" id="terms" />
+        <a href="./terminosycondiciones.html" target="_blank"> Acepto los términos y condiciones </a>
+      </span>
+      <input class="btn" type="submit" value="Contactanos" id="form-submit" />
+      <div class="form-message form-message__succes">
+        <img src="/img/icons/v-succes.svg" alt="succes" />
+        <span> ¡Formulario enviado! </span>
+      </div>
+      <div class="form-message form-message__error">
+        <img src="/img/icons/x-error.svg" alt="error" />
+        <span> Por favor revisa tus datos </span>
+      </div>
+    </form>
+  </section>
+
+  <footer>
+    <div class="footer-container" id="footer">
+      <div class="footer-group">
+        <ul class="footer-column">
+          <li class="title">Nosotros</li>
+          <li>
+            <a href="https://www.abeceb.com/nosotros#us_partners"> Partners </a>
+          </li>
+          <li>
+            <a href="https://www.abeceb.com/nosotros#us_advisory"> Advisory board </a>
+          </li>
+          <li>
+            <a href="https://www.abeceb.com/nosotros#us_talento"> Talento sectorial </a>
+          </li>
+          <li>
+            <a href="https://www.abeceb.com/nosotros#us_work"> Trabajá en ABECEB </a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-group">
+        <ul class="footer-column">
+          <li class="title">Servicios</li>
+          <li>
+            <a href="https://www.abeceb.com/servicios#consultoria-economica"> Consultoría económica </a>
+          </li>
+          <li>
+            <a href="https://www.abeceb.com/servicios#consultoria-estrategica"> Consultoría estratégica </a>
+          </li>
+          <li>
+            <a href="https://www.abeceb.com/servicios#negocios"> Negocios </a>
+          </li>
+          <li>
+            <a href="https://www.abeceb.com/servicios#red-global"> Nuestra red </a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-group">
+        <ul class="footer-column">
+          <li class="title">Foro ABECEB</li>
+          <li>
+            <a href="https://www.abeceb.com/foro"> Nuestro foro anual </a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-group">
+        <ul class="footer-column">
+          <li class="title">ABECEB en los medios</li>
+          <li>
+            <a href="https://www.abeceb.com/medios"> Nuestro aporte </a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-group">
+        <ul class="footer-column">
+          <li class="title">Colaboraciones</li>
+          <li>
+            <a href="https://www.abeceb.com/colaboraciones"> Enlaces efectivos </a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-group">
+        <ul class="footer-column">
+          <li class="title">¿Hablamos?</li>
+          <li>
+            <a href="#hablamos" onclick="lenis.scrollTo('#hablamos')"> Contacto </a>
+          </li>
+        </ul>
+      </div>
+      <ul class="footer-column last">
+        <li><img src="https://www.abeceb.com/wp-content/themes/abeceb/assets/img/abeceb-logo-footer.svg" alt="abeceb logo" /></li>
+        <li class="direccion">Juana Manso 555 Piso 8° | Oficina F</li>
+        <li class="localidad">Ciudad Autónoma de Buenos Aires<br />C1107CBK<br />Argentina</li>
+        <li class="mail">info@abeceb.com</li>
+        <li class="tel">(+5411) 4312 0811</li>
+        <li class="redes">
+          <a href="https://www.youtube.com/@abeceb" target="_blank"
+            ><img src="https://www.abeceb.com/wp-content/themes/abeceb/assets/img/icons/abeceb-youtube-icon.svg" alt="youtube" /></a
+          >
+          <a href="https://www.linkedin.com/company/abeceb-com/" target="_blank"
+            ><img src="https://www.abeceb.com/wp-content/themes/abeceb/assets/img/icons/abeceb-ilinkedin-logo.svg" alt="linkedin" /></a
+          >
+          <a href="https://www.instagram.com/abeceb_arg/" target="_blank"
+            ><img src="https://www.abeceb.com/wp-content/themes/abeceb/assets/img/icons/abeceb-instagram-logo.svg" alt="instagram" /></a
+          >
+        </li>
+      </ul>
+    </div>
+  </footer>
+</main>
